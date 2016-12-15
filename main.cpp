@@ -1,7 +1,7 @@
 #include <windows.h> 
 #include "stdafx.h"
 LRESULT CALLBACK WinFun(HWND, UINT, WPARAM, LPARAM);
-char WinName[] = "Мое окно"; // Имя класса окна 
+char WinName[] = "Window";
 int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPrevIns, LPSTR arg, int WinMode)
 {
 	HWND hwnd; 
@@ -26,7 +26,7 @@ int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPrevIns, LPSTR arg, int WinMode)
 	
 	hwnd = CreateWindow(
 		WinName, 
-		"Я УМЕЮ РИСОВАТЬ", 
+		"Title", 
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,  
 		CW_USEDEFAULT, 
@@ -49,21 +49,21 @@ int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPrevIns, LPSTR arg, int WinMode)
 }
 
 
-struct rect
+struct coord
 {
 	int x1, x2, y1, y2;
 };
 
-struct rectList  
+struct coordList // Список линий 
 {
-	rect L;
-	rectList *pNext;
+	coord L;
+	coordList *pNext;
 };
 
-rectList *pFirst = 0, *p;
+coordList *pFirst = 0, *p;
 
-void add(rectList *&pF, rectList *p)
-{  
+void add(coordList *&pF, coordList *p)
+{ 
 	p->pNext = pF;
 	pF = p;
 }
